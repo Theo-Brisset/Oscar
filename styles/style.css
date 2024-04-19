@@ -1,0 +1,205 @@
+/*D'abord, les éléments généraux 
+** La largeur de l'HTML, la font utilisée, les couleurs de fond
+** la hauteur de ligne, et la taille des titres
+** il y a aussi le rouge des petites étoiles qui indiquent que c'est obligatoire
+*/
+
+html{
+    width: 800px;
+    margin: auto;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+header, main{
+    background-color: #f8f8f8;
+}
+
+footer{
+    background-color: #313445;
+}
+
+h1{ /*De cette manière, ça a l'air de coller à la maquette */
+    font-size: 1.8em;
+    font-weight: 400;
+    line-height: 1.6em;
+}
+
+p, li, label{
+    line-height: 1.5em;
+    font-size: 1em;
+}
+
+span.obligatoire{
+    color:red;
+}
+
+/*Format du header
+** Il est en deux colonnes. La première avec une image toute simple
+** L'autre il s'agit d'avoir un flex en direction column pour mettre les éléments les uns au dessus des autres
+*/
+
+header .deux-colonnes{
+    display: flex;
+    justify-content: space-between;    
+}
+
+header .deux-colonnes div{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header .deux-colonnes div p{ /*Au vu de la maquette, j'ai l'impression que le texte doit être plus petit qu'ailleurs */
+    background-color: #009792;
+    display: inline-block;
+    width: 100%;
+    color: white;
+    font-weight: 600;
+    line-height: 1.8em;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.banniere{
+    background-image: url('../img/osteoRDV800x168.jpg');
+    background-size: cover;
+    height: 170px;
+}
+
+.banniere div{
+    text-align: center;
+    background-color: rgba(248, 248, 248, 0.7);
+    color: #009792;
+}
+
+/*On passe au contenu principal de la page
+** Il s'agit d'un format en une colonne principale
+*/
+
+main .conteneurPrincipal{
+    width: 80%;
+    margin: auto;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+/*Ici, on va gérer le formulaire
+** L'objectif est d'avoir bien le bord gauche des boites alignées à gauche
+** On utilise du flex format column pour l'orientation des inputs + label qui sont dans des div
+** On utilise du grid pour faire l'alignement
+** Comme on doit utiliser une largeur générale de 800px pour la page, j'ai trouvé que faire le template column en pourcentage + facile.
+** J'aurais pu utiliser des fr si j'avais donné une largeur plus petites aux div je pense. Je ne sais pas ce qui est le plus simple à entretenir.
+*/
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+form div{
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 15% 30%;
+}
+
+.checkbox{
+    display: block;
+}
+
+option{
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1em;
+}
+
+button{
+    margin-top: 10px;
+    background-color: #009792;
+    color:white;
+    font-weight: 800;
+    width: 150px;
+    border-radius: 3px;
+    border-style: none;
+}
+
+/*Le footer c'est par là
+** Un footer simple, on veut juste une image d'un côté et du texte de l'autre
+** J'utilise le flex avec un "space-around" pour coller au mieux à la maquette.
+** Ne pas oublier ! L'object-fit : contain permet de respecter comment l'image fit l'ensemble.
+*/
+footer{
+    display: flex;
+    justify-content: space-around;
+}
+
+footer img{
+    object-fit: contain;
+    width:30%;    
+}
+
+footer div{
+    display: flex;
+    align-items: center;
+    color:white;
+    font-size: 0.8em;
+}
+
+footer address{
+    font-style: normal;
+}
+
+@media only screen and (max-width:800px) { /*La consigne est : en dessous de 800 px, il faut avoir une page de 400px de large */
+    html{
+        max-width:400px;
+        margin: auto;
+    }
+
+    h1{
+        font-size: 1.4em;
+    }
+
+    header .deux-colonnes{
+        display: flex;
+        flex-direction: column;
+    }
+
+    header .deux-colonnes div{
+        width: 100%;
+    }
+
+    .banniere{
+        background-image: url('../img/osteoRDV400x120.jpg');
+        background-size:cover;
+        height: 120px;
+    }
+
+    form div{
+        grid-template-columns: 1fr 2fr;
+        column-gap: 10px;
+    }
+
+    form div input, form div select {
+        width: 100%; 
+        box-sizing: border-box;
+    }
+
+    form div select{
+        text-align: center;
+    }
+
+    .checkbox input{
+        width: auto;
+    }
+   
+    footer{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer img{
+        width: 60%;
+        margin-bottom: 10px;
+    }
+}
